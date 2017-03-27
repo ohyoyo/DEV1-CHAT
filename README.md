@@ -1,5 +1,5 @@
 ###### Yoann Di Maria - development student at Webstart.
-###### - with Matthieu Vignolle et Thibault Germain
+###### - with Florian Saumurot
 ![Language](https://img.shields.io/badge/Language-HTML-e44b23.svg) ![Language](https://img.shields.io/badge/Language-Javascript-f1e05a.svg) ![Language](https://img.shields.io/badge/Language-CSS-563d7c.svg)
 ---
 # CHATOON
