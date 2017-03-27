@@ -1,0 +1,23 @@
+{
+  "name": "dev1-chat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ohyoyo/DEV1-CHAT.git"
+  },
+  "author": "Yoann Di Maria <dm.yoann@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ohyoyo/DEV1-CHAT/issues"
+  },
+  "homepage": "https://github.com/ohyoyo/DEV1-CHAT#readme",
+  "dependencies": {
+    "express": "^4.15.2",
+    "socket.io": "^1.7.3"
+  }
+}
