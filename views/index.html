@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Comet</title>
+    <link rel="stylesheet" href="src/css/reset.css">
+    <link rel="stylesheet" href="src/css/style.css">
+    
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+    <script src="src/js/script.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            var FullBodyHeight = function() {
+                $('section#welcome').css('height', window.innerHeight);
+                $('.loadPage').css('height', window.innerHeight);
+            }
+            setInterval(FullBodyHeight, 0);
+            
+            $('section#welcome .container-box').hide().delay(1000).show('blind', 500); 
+        });
+    </script>
+</head>
+<body>
+    <section id="welcome">
+        <img id="logo" src="src/img/COMET_LOGO_WHITE-02.svg" alt="Logo Comet" class="pulse animated" >
+        <div class="container-box">
+            <div class="container">
+                <h2>Ce connecter ou créer un compte</h2>
+                <input type="text" id="pseudo" placeholder="Pseydonyme" maxlength="30">
+                <input type="password" id="password" placeholder="Mot de passe à 4 chiffres" maxlength="4">
+                <button id="buttonConnect">Se connecter</button>
+            </div>
+        </div>
+    </section>
+    <div class="loadPage">
+        <div class="loadPageRocket"></div>
+    </div>
+</body>
+</html>
