@@ -88,3 +88,43 @@ section#welcome .container-box .container button {
     width: 200px;
     height: 200px;
 }
+
+section#messenger {
+    width: 100%;
+}
+
+section#messenger main {
+    
+}
+
+.button-fb-connect {
+    width: 250px;
+    height: 40px;
+    background-color: rgb(73, 102, 174);
+    border: 2px solid rgb(73, 102, 174);
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+i.span-fb-connect {
+    width: 40px;
+    height: 40px;
+    background-image: url(../img/fb-.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 10.39px 20px;
+}
+
+i:last-child {
+    height: 20px;
+    border: 1px solid white;
+}
+
+.bt-fb-connect {
+    width: 100%;
+    text-align: center;
+}
