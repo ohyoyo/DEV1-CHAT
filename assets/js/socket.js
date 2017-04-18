@@ -13,7 +13,7 @@ $(document).ready(function() {
         if($('input').val() <= 0)
             return console.log('please write something');
 
-        socket.emit('message', $('input').val());
+        socket.broadcast.emit('message', $('input').val());
         $('input').val('');
     }
 
@@ -22,7 +22,7 @@ $(document).ready(function() {
             sendmessage();
     });
 
-    socket.on('newmessage', function(data) {
+    socket.on('readmessage', function(data) {
         console.log(data);
 
         $('ul').append('<li>' + data.content + '</li>');

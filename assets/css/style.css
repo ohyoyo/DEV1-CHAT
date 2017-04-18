@@ -89,14 +89,6 @@ section#welcome .container-box .container button {
     height: 200px;
 }
 
-section#messenger {
-    width: 100%;
-}
-
-section#messenger main {
-    
-}
-
 .button-fb-connect {
     width: 250px;
     height: 40px;
@@ -127,4 +119,116 @@ i:last-child {
 .bt-fb-connect {
     width: 100%;
     text-align: center;
+}
+
+/* section messenger */
+section#messenger {
+    width: 25%;
+    background-color: #E3E3E3;
+}
+
+section#messenger header nav.header {
+    display: inline-flex;
+    flex-direction: row;
+    height: 50px;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+section#messenger header nav.header #menu {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+section#messenger header nav.header #line {
+    width: 30px;
+    height: 3px;
+    background-color: black;
+    position: relative;
+    margin: 0px 20px;
+}
+
+section#messenger header nav.header #line::before {
+    width: 30px;
+    height: 3px;
+    background-color: black;
+    content: '';
+    position: absolute;
+    top: -8px;
+}
+
+section#messenger header nav.header #line::after {
+    width: 30px;
+    height: 3px;
+    background-color: black;
+    content: '';
+    position: absolute;
+    bottom: -8px;
+}
+
+section#messenger header nav.header #closeHeader {
+    background-image: url('../img/picto/ic_keyboard_return_black_24px.svg');
+    background-repeat: no-repeat;
+    background-size: 30px 30px;
+    width: 30px;
+    height: 30px;
+    margin: 0px 20px;
+    cursor: pointer;
+}
+
+section#messenger header nav.profil {
+    display: inline-flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+section#messenger header nav.profil .profil {
+    display: inline-flex;
+    flex-direction: row;
+    height: 65px;
+    margin: 10px 25px;
+}
+
+section#messenger header nav.profil .profil img.picture {
+    background-image: url(../img/tete/IMG_5194.jpg);
+    width: 65px;
+    height: 65px;
+    background-size: 65px 65px;
+    border-radius: 50%;
+    margin-right: 25px;
+}
+
+section#messenger header nav.profil .profil .user {
+    width: 100%;
+    display: flex;
+    height: 100%;
+    background-color: white;
+    justify-content: space-between;
+}
+
+section#messenger header nav.profil .profil .user .username {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    
+}
+
+section#messenger header nav.profil .profil .user .username .name {
+    font-size: 20px;
+}
+
+section#messenger header nav.profil .profil .user .username .pseudo {
+    color: #656565;
+    font-size: 14px;
+}
+
+section#messenger header nav.profil .profil .user .connect {
+    background-color: green;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    content: ' ';
 }

@@ -3,8 +3,8 @@ function statusChangeCallback(response) {
     if (response.status === 'connected') {
         connectAPI();
         $('section#welcome').hide('clip', 500);
-        $('.loadPage').show(1000).delay(1000).hide('fade', 500);
-        $('section#messenger').show();
+        $('.loadPage').delay(500).show(1000).delay(1000).hide('fade', 500);
+        $('section#messenger').delay(3000).show();
     } else {
         $('section#welcome .container-box').hide().delay(1000).show('blind', 500);
         document.getElementById('status').innerHTML = 'connect toi bitch';

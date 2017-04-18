@@ -25,7 +25,7 @@ io.on('connection', function(socket) {
     });
     
     socket.on('message', function(message) {
-        io.emit('newmessage', {
+        io.broadcast.emit('readmessage', {
             content : message,
             time : Time(),
             fb_user_id : fb_user_id
