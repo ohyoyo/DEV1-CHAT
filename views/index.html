@@ -15,8 +15,8 @@
     <script src="src/js/jquery-1.12.4.js"></script>
     <script src="src/js/jquery-ui.js"></script>
     
-    <script src="src/js/script.js"></script>
     <script src="src/js/document.js"></script>
+    <script src="src/js/script.js"></script>
     <script src="src/js/socket.js"></script>
 
     <script>
@@ -31,7 +31,6 @@
     </script>
 </head>
 <body>
-   <!--
     <section id="welcome">
         <img id="logo" src="src/img/COMET_LOGO_WHITE-02.svg" alt="Logo Comet" class="pulse animated" >
         <div class="container-box">
@@ -51,7 +50,7 @@
                 </script>
     
                 <fb:login-button id="login-button-facebook" scope="public_profile,email" onlogin="checkLoginState();" data-auto-logout-link="true"></fb:login-button>
-                
+                <div id="status"></div>
                 <div class="button-fb-connect">
                     <i class="span-fb-connect"> </i> <i> </i>
                     <div class="bt-fb-connect">Ce connecter</div>
@@ -65,17 +64,6 @@
         <div class="loadPageRocket"></div>
     </div>
     <section id="messenger" style="display:none;">
-        
-            <h1>Socket</h1>
-    
-            <input type="text" name="message">
-            <button>Send</button>
-
-            <ul>
-            </ul>
-    </section>
-    -->
-    <section id="messenger">
         <header>
             <nav class="header">
                 <div id="menu">
@@ -85,24 +73,26 @@
             </nav>
             <nav id="profil" class="profil">
                <!-- profil -->
-                <div class="profil">
-                    <img class="picture">
-                    <div class="user">
-                        <div class="username">
-                            <div class="name">Yoann Di Maria</div>
-                            <div class="pseudo">@ohyoyo</div>
+               <div id="allprofil">
+                    <div class="profil">
+                        <img class="picture">
+                        <div class="user">
+                            <div class="username">
+                                <div class="name">Yoann Di Maria</div>
+                                <div class="pseudo">@ohyoyo</div>
+                            </div>
+                            <div class="connect"> </div>
                         </div>
-                        <div class="connect"> </div>
                     </div>
-                </div>
-                <div class="profil">
-                    <img class="picture">
-                    <div class="user">
-                        <div class="username">
-                            <div class="name">Yoann Di Maria</div>
-                            <div class="pseudo">@ohyoyo</div>
+                    <div class="profil">
+                        <img class="picture">
+                        <div class="user">
+                            <div class="username">
+                                <div class="name">Yoann Di Maria</div>
+                                <div class="pseudo">@ohyoyo</div>
+                            </div>
+                            <div class="connect"> </div>
                         </div>
-                        <div class="connect"> </div>
                     </div>
                 </div>
                <!-- profil -->

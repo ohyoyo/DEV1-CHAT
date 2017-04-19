@@ -1,3 +1,5 @@
+var socket = io('http://localhost:1337');
+
 $(document).ready(function() {
     socket.on('connect', function() {
         console.log(socket.id);
@@ -6,7 +8,15 @@ $(document).ready(function() {
     socket.on('response', function(data) {
         console.log(data);
     });
-
+    
+    socket.on('user_connect', function(user_tab) {
+        $('#allprofil').remove();
+        for (var i=0; i < user_tab.length; i++) {
+            user_tab[i];
+            $('#profil').append('<div class="profil"><img class="picture" src="' + user_tab[i].picture + '"><div class="user"><div class="username"><div class="name">' + user_tab[i].name + '</div><div class="pseudo">@ohyoyo</div></div><div class="connect"></div></div></div>');
+        } 
+    });
+    
     function sendmessage() {
         console.log($('input').val());
 

@@ -1,5 +1,7 @@
+
+
 function statusChangeCallback(response) {
-    console.log(response);
+    //console.log(response);
     if (response.status === 'connected') {
         connectAPI();
         $('section#welcome').hide('clip', 500);
@@ -31,9 +33,21 @@ window.fbAsyncInit = function() {
 };
 
 function connectAPI() {
+    var user_obj = {};
     FB.api('/me', function(response) {
         document.getElementById('status').innerHTML = 'ok, ' + response.name + '!';
-        console.log(response);
-        socket.emit('fb_user_id', response.id);
+        user_obj = {
+            name: response.name,
+            fb_id: response.id
+        };
+       
+        FB.api("/" + user_obj.fb_id + "/picture", function (rpic) {
+            if (rpic && !rpic.error) {
+                user_obj.picture = rpic.data.url;
+                console.log(user_obj)
+                socket.emit('fb_user', user_obj);
+            }
+        });
+        //
     });
 }
