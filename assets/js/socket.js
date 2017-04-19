@@ -11,9 +11,10 @@ $(document).ready(function() {
     
     socket.on('user_connect', function(user_tab) {
         $('#allprofil').remove();
+        $('#profil').append('<div id="allprofil"></div>');
         for (var i=0; i < user_tab.length; i++) {
             user_tab[i];
-            $('#profil').append('<div class="profil"><img class="picture" src="' + user_tab[i].picture + '"><div class="user"><div class="username"><div class="name">' + user_tab[i].name + '</div><div class="pseudo">@ohyoyo</div></div><div class="connect"></div></div></div>');
+            $('#allprofil').append('<div class="profil"><img class="picture" src="' + user_tab[i].picture + '"><div class="user"><div class="username"><div class="name">' + user_tab[i].name + '</div><div class="pseudo">@ohyoyo</div></div><div class="connect"></div></div></div>');
         } 
     });
     
