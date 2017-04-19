@@ -13,7 +13,7 @@ $(document).ready(function() {
         if($('input').val() <= 0)
             return console.log('please write something');
 
-        socket.broadcast.emit('message', $('input').val());
+        socket.emit('message', $('input').val());
         $('input').val('');
     }
 
@@ -21,10 +21,44 @@ $(document).ready(function() {
         if(e.keyCode == 13)
             sendmessage();
     });
+    
+    $('#submit').click(function() {
+        sendmessage();
+    });
 
     socket.on('readmessage', function(data) {
         console.log(data);
+        
+        var sdate = new Date(data.time);
+        console.log(sdate);
+        var limessage = [
+            '<li class="other">'+
+                '<div class="name">Other</div>'+
+                '<div class="bulle blue">'+
+                    '<div class="picture"></div>'+
+                    '<div class="message">'+data.content+'</div>'+
+                    '<div class="time">'+sdate.getHours()+'h'+sdate.getMinutes()+'</div>'+
+                '</div>'+
+            '</li>'
+        ].join();
+        
+        $('ul').append(limessage);
+    });
 
-        $('ul').append('<li>' + data.content + '</li>');
+    socket.on('mymessage', function(data) {
+        var sdate = new Date(data.time);
+        console.log(sdate);
+        var slimessage = [
+            '<li class="me">'+
+                '<div class="name">Moi</div>'+
+                '<div class="bulle grey">'+
+                    '<div class="picture"></div>'+
+                    '<div class="message">'+data.content+'</div>'+
+                    '<div class="time">'+sdate.getHours()+'h'+sdate.getMinutes()+'</div>'+
+                '</div>'+
+            '</li>'
+        ].join();
+        
+        $('ul').append(slimessage);
     });
 });

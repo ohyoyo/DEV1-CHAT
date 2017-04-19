@@ -22,6 +22,8 @@
     <script>
         $(document).ready(function() {
             var FullBodyHeight = function() {
+                $('body').css('height', window.innerHeight);
+                $('body').css('max-height', window.innerHeight);
                 $('section#welcome').css('height', window.innerHeight);
                 $('section#messenger').css('height', window.innerHeight);
                 $('.loadPage').css('height', window.innerHeight);
@@ -40,15 +42,7 @@
                 <input type="text" id="pseudo" placeholder="Pseydonyme" maxlength="30">
                 <input type="password" id="password" placeholder="Mot de passe à 4 chiffres" maxlength="4">
                 <button id="buttonConnect">Se connecter</button>
-                <script>
-                    (function(d, s, id) {
-                        var js, fjs = d.getElementsByTagName(s)[0];
-                        if (d.getElementById(id)) return;
-                        js = d.createElement(s); js.id = id;
-                        js.src = "//connect.facebook.net/fr_FR/sdk.js";
-                        fjs.parentNode.insertBefore(js, fjs);
-                    }(document, 'script', 'facebook-jssdk'));
-                </script>
+
     
                 <fb:login-button id="login-button-facebook" scope="public_profile,email" onlogin="checkLoginState();" data-auto-logout-link="true"></fb:login-button>
                 
@@ -64,19 +58,9 @@
     <div class="loadPage" style="display:none;">
         <div class="loadPageRocket"></div>
     </div>
-    <section id="messenger" style="display:none;">
-        
-            <h1>Socket</h1>
-    
-            <input type="text" name="message">
-            <button>Send</button>
-
-            <ul>
-            </ul>
-    </section>
     -->
     <section id="messenger">
-        <header>
+        <header id="nav">
             <nav class="header">
                 <div id="menu">
                     <div id="line"></div>
@@ -89,7 +73,7 @@
                     <img class="picture">
                     <div class="user">
                         <div class="username">
-                            <div class="name">Yoann Di Maria</div>
+                            <div class="name"></div>
                             <div class="pseudo">@ohyoyo</div>
                         </div>
                         <div class="connect"> </div>
@@ -99,15 +83,50 @@
                     <img class="picture">
                     <div class="user">
                         <div class="username">
-                            <div class="name">Yoann Di Maria</div>
+                            <div class="name"></div>
                             <div class="pseudo">@ohyoyo</div>
                         </div>
                         <div class="connect"> </div>
                     </div>
                 </div>
                <!-- profil -->
+                        <script>
+                    (function(d, s, id) {
+                        var js, fjs = d.getElementsByTagName(s)[0];
+                        if (d.getElementById(id)) return;
+                        js = d.createElement(s); js.id = id;
+                        js.src = "//connect.facebook.net/fr_FR/sdk.js";
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'facebook-jssdk'));
+                </script>
+               <fb:login-button id="login-button-facebook" scope="public_profile,email" onlogin="checkLoginState();" data-auto-logout-link="true"></fb:login-button>
             </nav>
         </header>
+        <main>
+            <header id="logo">
+                <div id="logo">
+                    <a href="">
+                        <img id="header_logo" src="src/img/logo-01.png" alt="Logo Comet">
+                    </a>
+                </div>
+                <a href="" class="spritegg infos" id="infos"></a>
+            </header>
+            <article id="mess">
+                <ul>
+                </ul>
+            </article>
+            <article id="chat">
+                <input autofocus type="text" name="message" placeholder="Écrire un message..">
+                <div id="input">
+                    <button class="spritegg give" id="submit"></button>
+                    <div class="spritegg gif"></div>
+                    <div class="spritegg emoji"></div>
+                    <input type="file" id="inputpicture" style="display:none;">
+                    <label class="spritegg picture" for="inputpicture"></label>
+                    <div class="spritegg localiz"></div>
+                </div>
+            </article>
+        </main>
     </section>
 </body>
 </html>

@@ -32,7 +32,7 @@ window.fbAsyncInit = function() {
 
 function connectAPI() {
     FB.api('/me', function(response) {
-        document.getElementById('status').innerHTML = 'ok, ' + response.name + '!';
+        $('.name').text(response.name);
         console.log(response);
         socket.emit('fb_user_id', response.id);
     });
