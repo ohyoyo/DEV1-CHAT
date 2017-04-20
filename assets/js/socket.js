@@ -19,6 +19,29 @@ $(document).ready(function() {
         } 
     });
     
+    var timeout;
+
+    function timeoutFunction() {
+        typing = false;
+        socket.emit("typing", false);
+    }
+
+    $('#message').keyup(function() {
+        console.log('happening');
+        typing = true;
+        socket.emit('typing', 'typing...'); // le text que tu veux afficher
+        clearTimeout(timeout);
+        timeout = setTimeout(timeoutFunction, 2000);
+    });
+
+    socket.on('typing', function(data) {
+        if (data) {
+            console.log(data); //quand tu dois afficher is typing
+        } else {
+            console.log(""); // quand il doit pas s'afficher
+        }
+    });
+    
     function sendmessage() {
         console.log($('#message').val());
 

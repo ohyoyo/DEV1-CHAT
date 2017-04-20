@@ -27,6 +27,11 @@ io.on('connection', function(socket) {
         io.emit('user_connect', user_tab);
     });
     
+    socket.on('typing', function (data) {
+      console.log(data);
+      socket.broadcast.emit('typing', data);
+    });
+    
     socket.on('message', function(message) {
         socket.broadcast.emit('readmessage', {
             content : message,
