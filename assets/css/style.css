@@ -1,6 +1,7 @@
 body {
     margin: 0;
     font-family: "Montserrat";
+    overflow: hidden;
 }
 
 section#welcome {
@@ -123,10 +124,18 @@ i:last-child {
 
 /* section messenger */
 section#messenger {
-    width: 25%;
-    background-color: #E3E3E3;
+    width: 100%;
+    display: inline-flex;
+    flex-direction: row;
 }
 
+section#messenger header#nav {
+    width: 25%;
+    background-color: #E3E3E3;
+    display: inline-flex;
+    flex-direction: column;
+    border-right: 1px solid #95989A;
+}
 section#messenger header nav.header {
     display: inline-flex;
     flex-direction: row;
@@ -188,7 +197,7 @@ section#messenger header nav.profil .profil {
     display: inline-flex;
     flex-direction: row;
     height: 65px;
-    margin: 10px 25px;
+    margin: 0px 0px 10px 10px;
 }
 
 section#messenger header nav.profil .profil img.picture {
@@ -197,7 +206,7 @@ section#messenger header nav.profil .profil img.picture {
     height: 65px;
     background-size: 65px 65px;
     border-radius: 50%;
-    margin-right: 25px;
+    margin-right: 15px;
 }
 
 section#messenger header nav.profil .profil .user {
@@ -211,18 +220,18 @@ section#messenger header nav.profil .profil .user {
 section#messenger header nav.profil .profil .user .username {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 10px;
     
 }
 
 section#messenger header nav.profil .profil .user .username .name {
-    font-size: 20px;
+    font-size: 15px;
 }
 
 section#messenger header nav.profil .profil .user .username .pseudo {
     color: #656565;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 section#messenger header nav.profil .profil .user .connect {
@@ -231,4 +240,198 @@ section#messenger header nav.profil .profil .user .connect {
     height: 15px;
     border-radius: 50%;
     content: ' ';
+}
+
+section#messenger header#logo {
+    height: 50px;
+    border-bottom: 1px solid #95989A;
+    width: 100%;
+}
+
+main {
+    width: 100%;
+    height: 100%;
+    display: inline-flex;
+    flex-direction: column;
+}
+
+main header#logo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    align-items: center;
+}
+
+main header#logo #logo {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+main header#logo #header_logo {
+    width: 118.08px;
+    height: 45px;
+}
+
+main article#chat {
+    display: flex;
+    justify-content: flex-end;
+    height: 50px;
+}
+main article:last-child {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #95989A;
+}
+
+main article #input {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+main article input {
+    border: none;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    display: inline-flex;
+    flex-direction: row;
+    padding-left: 50px;
+    height: 100%;
+    width: 100%;
+}
+
+/*
+main article input::-webkit-input-placeholder {
+    padding-left: 50px;
+}
+
+main article input::-moz-placeholder {
+    padding-left: 50px;
+}
+
+main article input:-ms-input-placeholder {
+    padding-left: 50px;
+}
+
+main article input:-moz-placeholder {
+    padding-left: 50px;
+}
+*/
+
+main article #input button {
+    border: none;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    height: 100%;
+    background-color: white;
+    border-left: 1px solid #95989A;
+}
+
+main .spritegg {
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 50px;
+    display: inline-flex;
+    flex-direction: row;
+    border-left: 1px solid #95989A;
+}
+
+main article #input .spritegg.gif {
+    background-image: url(../img/picto/ic_gif_black_24px.svg);
+}
+
+main article #input .spritegg.give {
+    background-image: url(../img/picto/ic_send_black_24px.svg);
+}
+
+main article #input .spritegg.emoji {
+    background-image: url(../img/picto/ic_insert_emoticon_black_24px.svg);
+}
+
+main article #input .spritegg.picture {
+    background-image: url(../img/picto/ic_crop_original_black_24px.svg);
+}
+
+main article #input .spritegg.localiz {
+    background-image: url(../img/picto/ic_place_black_24px.svg);
+}
+
+main header#logo .spritegg.infos {
+    background-image: url(../img/picto/ic_info_outline_black_24px.svg);
+}
+
+main header#logo #infos {
+    border-left: none;
+}
+
+article#mess {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+}
+
+li {
+    width: 540px;
+    margin: 20px;
+}
+li .name {
+    font-size: 15px;
+    margin-left: 15px;
+    margin-bottom: 5px;
+}
+
+li .bulle {
+    width: 100%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 10px;
+    color: white;
+}
+
+li .bulle.blue {
+    background-color: #2590F5;
+}
+
+li .bulle.red {
+    background-color: #DB5149;
+}
+
+li .bulle.green {
+    background-color: #24A061;
+}
+
+li .bulle.grey {
+    background-color: #E5E5EA;
+}
+
+li .bulle .picture {
+    background-color: red;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+li .bulle .message {
+    text-align: left;
+    width: 100%;
+}
+li.other {
+    flex-direction: column;
+    justify-content: flex-start;
+}
+li.me {
+    flex-direction: column;
+    justify-content: flex-end;
 }

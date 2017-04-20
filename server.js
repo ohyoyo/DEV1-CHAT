@@ -28,10 +28,14 @@ io.on('connection', function(socket) {
     });
     
     socket.on('message', function(message) {
-        io.broadcast.emit('readmessage', {
+        socket.broadcast.emit('readmessage', {
             content : message,
             time : Time(),
-            fb_user_id : fb_user_id
+        });
+        
+        socket.emit('mymessage', {
+            content : message,
+            time : Time(),
         });
         
     });

@@ -1,6 +1,7 @@
-var socket = io('http://localhost:1337');
-
 $(document).ready(function() {
+    var user_name = getCookie('myname'),
+        user_picture = getCookie('mypicture');
+
     socket.on('connect', function() {
         console.log(socket.id);
     });
@@ -8,7 +9,7 @@ $(document).ready(function() {
     socket.on('response', function(data) {
         console.log(data);
     });
-    
+
     socket.on('user_connect', function(user_tab) {
         $('#allprofil').remove();
         $('#profil').append('<div id="allprofil"></div>');
@@ -19,23 +20,62 @@ $(document).ready(function() {
     });
     
     function sendmessage() {
-        console.log($('input').val());
+        console.log($('#message').val());
 
-        if($('input').val() <= 0)
+        if($('#message').val() <= 0)
             return console.log('please write something');
-
-        socket.broadcast.emit('message', $('input').val());
-        $('input').val('');
+        var message_obj = {
+            message: $('#message').val(),
+            user: user_name,
+            picture: user_picture
+        };
+        console.log(message_obj);
+        socket.emit('message', message_obj);
+        $('#message').val('');
     }
 
     document.addEventListener('keydown', function(e) {
         if(e.keyCode == 13)
             sendmessage();
     });
+    
+    $('#submit').click(function() {
+        sendmessage();
+    });
 
     socket.on('readmessage', function(data) {
         console.log(data);
+        
+        var sdate = new Date(data.time);
+        console.log(sdate);
+        var limessage = [
+            '<li class="other">'+
+                '<div class="name">'+data.content.user+'</div>'+
+                '<div class="bulle blue">'+
+                    '<img class="picture" src="'+data.content.picture+'">'+
+                    '<div class="message">'+data.content.message+'</div>'+
+                    '<div class="time">'+sdate.getHours()+'h'+sdate.getMinutes()+'</div>'+
+                '</div>'+
+            '</li>'
+        ].join();
+        
+        $('ul').append(limessage);
+    });
 
-        $('ul').append('<li>' + data.content + '</li>');
+    socket.on('mymessage', function(data) {
+        var sdate = new Date(data.time);
+        console.log(sdate);
+        var slimessage = [
+            '<li class="me">'+
+                '<div class="name">Moi</div>'+
+                '<div class="bulle grey">'+
+                    '<img class="picture" src="'+data.content.picture+'">'+
+                    '<div class="message">'+data.content.message+'</div>'+
+                    '<div class="time">'+sdate.getHours()+'h'+sdate.getMinutes()+'</div>'+
+                '</div>'+
+            '</li>'
+        ].join();
+        
+        $('ul').append(slimessage);
     });
 });
