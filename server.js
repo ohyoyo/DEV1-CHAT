@@ -7,7 +7,8 @@ var Time = function() {
     var newDate = new Date();
     return newDate.getTime();
 }
-var fb_user_id;
+var user_tab = [],
+    i = 0;
 
 app.use('/src/css/', express.static(__dirname + '/assets/css'));
 app.use('/src/js/', express.static(__dirname + '/assets/js'));
@@ -19,22 +20,22 @@ io.on('connection', function(socket) {
     console.log('id connect : ' + socket.id);
     
     
-    socket.on('fb_user_id', function(id) {
-        console.log('fb id : ' + id + ' connected to id socket : ' + socket.id);
-        fb_user_id = id;
+    socket.on('fb_user', function(obj) {
+        console.log('toto');
+        user_tab[i] = obj;
+        ++i;
+        io.emit('user_connect', user_tab);
     });
     
     socket.on('message', function(message) {
         socket.broadcast.emit('readmessage', {
             content : message,
             time : Time(),
-            fb_user_id : fb_user_id
         });
         
         socket.emit('mymessage', {
             content : message,
             time : Time(),
-            fb_user_id : fb_user_id
         });
         
     });
