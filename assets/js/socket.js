@@ -1,4 +1,18 @@
 $(document).ready(function() {
+    var bubbleColor;
+    var random = Math.floor((Math.random() * 3) + 1);
+    switch(random) {
+        case 1 :
+            bubbleColor = 'green';
+            break;
+        case 2 :
+            bubbleColor = 'red';
+            break;
+        case 3 :
+            bubbleColor = 'blue';
+            break;
+    }
+
     socket.on('connect', function() {
         console.log(socket.id);
     });
@@ -34,7 +48,7 @@ $(document).ready(function() {
         var limessage = [
             '<li class="other">'+
                 '<div class="name">Other</div>'+
-                '<div class="bulle blue">'+
+                '<div class="bubble '+bubbleColor+'">'+
                     '<div class="picture"></div>'+
                     '<div class="message">'+data.content+'</div>'+
                     '<div class="time">'+sdate.getHours()+'h'+sdate.getMinutes()+'</div>'+
@@ -51,7 +65,7 @@ $(document).ready(function() {
         var slimessage = [
             '<li class="me">'+
                 '<div class="name">Moi</div>'+
-                '<div class="bulle grey">'+
+                '<div class="bubble grey">'+
                     '<div class="picture"></div>'+
                     '<div class="message">'+data.content+'</div>'+
                     '<div class="time">'+sdate.getHours()+'h'+sdate.getMinutes()+'</div>'+
