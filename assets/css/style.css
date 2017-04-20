@@ -388,7 +388,7 @@ li .name {
     margin-bottom: 5px;
 }
 
-li .bulle {
+li .bubble {
     width: 100%;
     border-radius: 10px;
     display: flex;
@@ -399,23 +399,23 @@ li .bulle {
     color: white;
 }
 
-li .bulle.blue {
+li .bubble.blue {
     background-color: #2590F5;
 }
 
-li .bulle.red {
+li .bubble.red {
     background-color: #DB5149;
 }
 
-li .bulle.green {
+li .bubble.green {
     background-color: #24A061;
 }
 
-li .bulle.grey {
+li .bubble.grey {
     background-color: #E5E5EA;
 }
 
-li .bulle .picture {
+li .bubble .picture {
     background-color: red;
     width: 30px;
     height: 30px;
@@ -423,7 +423,7 @@ li .bulle .picture {
     margin-right: 10px;
 }
 
-li .bulle .message {
+li .bubble .message {
     text-align: left;
     width: 100%;
 }

@@ -1,6 +1,22 @@
 $(document).ready(function() {
+<<<<<<< HEAD
+    var bubbleColor;
+    var random = Math.floor((Math.random() * 3) + 1);
+    switch(random) {
+        case 1 :
+            bubbleColor = 'green';
+            break;
+        case 2 :
+            bubbleColor = 'red';
+            break;
+        case 3 :
+            bubbleColor = 'blue';
+            break;
+    }
+=======
     var user_name = getCookie('myname'),
         user_picture = getCookie('mypicture');
+>>>>>>> 8a475b381d8b851fa8d6806fa66af5d1ec23c411
 
     socket.on('connect', function() {
         console.log(socket.id);
@@ -73,10 +89,17 @@ $(document).ready(function() {
         console.log(sdate);
         var limessage = [
             '<li class="other">'+
+<<<<<<< HEAD
+                '<div class="name">Other</div>'+
+                '<div class="bubble '+bubbleColor+'">'+
+                    '<div class="picture"></div>'+
+                    '<div class="message">'+data.content+'</div>'+
+=======
                 '<div class="name">'+data.content.user+'</div>'+
                 '<div class="bulle blue">'+
                     '<img class="picture" src="'+data.content.picture+'">'+
                     '<div class="message">'+data.content.message+'</div>'+
+>>>>>>> 8a475b381d8b851fa8d6806fa66af5d1ec23c411
                     '<div class="time">'+sdate.getHours()+'h'+sdate.getMinutes()+'</div>'+
                 '</div>'+
             '</li>'
@@ -91,9 +114,15 @@ $(document).ready(function() {
         var slimessage = [
             '<li class="me">'+
                 '<div class="name">Moi</div>'+
+<<<<<<< HEAD
+                '<div class="bubble grey">'+
+                    '<div class="picture"></div>'+
+                    '<div class="message">'+data.content+'</div>'+
+=======
                 '<div class="bulle grey">'+
                     '<img class="picture" src="'+data.content.picture+'">'+
                     '<div class="message">'+data.content.message+'</div>'+
+>>>>>>> 8a475b381d8b851fa8d6806fa66af5d1ec23c411
                     '<div class="time">'+sdate.getHours()+'h'+sdate.getMinutes()+'</div>'+
                 '</div>'+
             '</li>'
