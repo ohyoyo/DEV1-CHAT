@@ -32,8 +32,18 @@ window.fbAsyncInit = function() {
 
 function connectAPI() {
     FB.api('/me', function(response) {
-        $('.name').text(response.name);
-        console.log(response);
-        socket.emit('fb_user_id', response.id);
+        user_obj = {
+            name: response.name,
+            fb_id: response.id
+        };
+       
+        FB.api("/" + user_obj.fb_id + "/picture", function (rpic) {
+            if (rpic && !rpic.error) {
+                user_obj.picture = rpic.data.url;
+                setCookie('myname', user_obj.name, 30);
+                setCookie('mypicture', user_obj.picture, 30);
+                socket.emit('fb_user', user_obj);
+            }
+        });
     });
 }

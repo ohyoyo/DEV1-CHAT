@@ -1,4 +1,7 @@
 $(document).ready(function() {
+    var user_name = getCookie('myname'),
+        user_picture = getCookie('mypicture');
+
     socket.on('connect', function() {
         console.log(socket.id);
     });
@@ -7,14 +10,28 @@ $(document).ready(function() {
         console.log(data);
     });
 
+    socket.on('user_connect', function(user_tab) {
+        $('#allprofil').remove();
+        $('#profil').append('<div id="allprofil"></div>');
+        for (var i=0; i < user_tab.length; i++) {
+            user_tab[i];
+            $('#allprofil').append('<div class="profil"><img class="picture" src="' + user_tab[i].picture + '"><div class="user"><div class="username"><div class="name">' + user_tab[i].name + '</div><div class="pseudo">@ohyoyo</div></div><div class="connect"></div></div></div>');
+        } 
+    });
+    
     function sendmessage() {
-        console.log($('input').val());
+        console.log($('#message').val());
 
-        if($('input').val() <= 0)
+        if($('#message').val() <= 0)
             return console.log('please write something');
-
-        socket.emit('message', $('input').val());
-        $('input').val('');
+        var message_obj = {
+            message: $('#message').val(),
+            user: user_name,
+            picture: user_picture
+        };
+        console.log(message_obj);
+        socket.emit('message', message_obj);
+        $('#message').val('');
     }
 
     document.addEventListener('keydown', function(e) {
@@ -33,10 +50,10 @@ $(document).ready(function() {
         console.log(sdate);
         var limessage = [
             '<li class="other">'+
-                '<div class="name">Other</div>'+
+                '<div class="name">'+data.content.user+'</div>'+
                 '<div class="bulle blue">'+
-                    '<div class="picture"></div>'+
-                    '<div class="message">'+data.content+'</div>'+
+                    '<img class="picture" src="'+data.content.picture+'"></div>'+
+                    '<div class="message">'+data.content.message+'</div>'+
                     '<div class="time">'+sdate.getHours()+'h'+sdate.getMinutes()+'</div>'+
                 '</div>'+
             '</li>'
@@ -52,8 +69,8 @@ $(document).ready(function() {
             '<li class="me">'+
                 '<div class="name">Moi</div>'+
                 '<div class="bulle grey">'+
-                    '<div class="picture"></div>'+
-                    '<div class="message">'+data.content+'</div>'+
+                    '<img class="picture" src="'+data.content.picture+'"/div>'+
+                    '<div class="message">'+data.content.message+'</div>'+
                     '<div class="time">'+sdate.getHours()+'h'+sdate.getMinutes()+'</div>'+
                 '</div>'+
             '</li>'
