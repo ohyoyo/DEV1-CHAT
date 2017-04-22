@@ -12,13 +12,24 @@ $(document).ready(function() {
             bubbleColor = 'blue';
             break;
     }
+    
+    $("html, body").animate({ scrollTop: 500000}, 10);
     var user_name = getCookie('myname'),
         user_picture = getCookie('mypicture');
 
     socket.on('connect', function() {
         console.log(socket.id);
     });
-
+    
+    socket.on('disconnect', function() {
+        console.log('disconnect');
+        var user_obj = {
+            user: user_name,
+            picture: user_picture
+        };
+        socket.emit('user_disconnected', user_obj);
+    });
+    
     socket.on('response', function(data) {
         console.log(data);
     });
@@ -30,6 +41,10 @@ $(document).ready(function() {
             user_tab[i];
             $('#allprofil').append('<div class="profil"><img class="picture" src="' + user_tab[i].picture + '"><div class="user"><div class="username"><div class="name">' + user_tab[i].name + '</div><div class="pseudo">@ohyoyo</div></div><div class="connect"></div></div></div>');
         } 
+    });
+    
+    socket.on('user_disconnect', function(obj) {
+        document.getElementsByClassName('connect')[obj.pos].setAttribute('class', 'disconnect');
     });
     
     var timeout;

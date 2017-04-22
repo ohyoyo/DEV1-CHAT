@@ -37,12 +37,14 @@ function connectAPI() {
     FB.api('/me', function(response) {
         user_obj = {
             name: response.name,
-            fb_id: response.id
+            fb_id: response.id,
+            socket_id: socket.id
         };
-       
+        console.log(user_obj);
         FB.api("/" + user_obj.fb_id + "/picture", function (rpic) {
             if (rpic && !rpic.error) {
                 user_obj.picture = rpic.data.url;
+                console.log(user_obj);
                 setCookie('myname', user_obj.name, 30);
                 setCookie('mypicture', user_obj.picture, 30);
                 socket.emit('fb_user', user_obj);

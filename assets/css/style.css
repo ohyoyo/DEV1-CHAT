@@ -242,6 +242,15 @@ section#messenger header nav.profil .profil .user .connect {
     content: ' ';
 }
 
+section#messenger header nav.profil .profil .user .disconnect {
+    background-color: grey;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    content: ' ';
+}
+}
+
 section#messenger header#logo {
     height: 50px;
     border-bottom: 1px solid #95989A;
@@ -376,6 +385,10 @@ article#mess {
     display: flex;
     flex-direction: column;
     padding: 50px;
+}
+
+article#mess ul {
+    overflow-y: scroll;
 }
 
 li {

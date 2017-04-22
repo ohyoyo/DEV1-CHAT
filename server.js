@@ -46,6 +46,27 @@ io.on('connection', function(socket) {
     });
     socket.on('disconnect', function() {
         console.log(socket.id + ' disconnect');
+        for (var j=0; socket.id != user_tab[j].socket_id; j++);
+        console.log('socket');
+        io.emit('user_disconnect', {
+            tab: user_tab,
+            pos: j
+        });
+        console.log('attend');
+        var x = 5;
+        console.log(x);
+        var y = setInterval(function() {
+            --x;
+            console.log(x);
+        }, 1000);
+        setTimeout(function() {
+            clearInterval(y);
+            console.log(user_tab.length + ' ' + j);
+            user_tab.splice(j, 1);
+            console.log(user_tab.length);
+            io.emit('user_connect', user_tab);
+        }, x * 1000);
+        
     });
 });
 
