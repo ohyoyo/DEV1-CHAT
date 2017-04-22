@@ -28,3 +28,22 @@ function getCookie(name) {
 function eraseCookie(name) {
     setCookie(name,"",-1);
 }
+
+$(document).ready(function() {
+    $('.gif-giphy').click(function() {
+        alert('ok');
+        alert($('.gif-giphy').data('id'));
+        socket.emit('imggiphy', $('.gif-giphy').data('id'));
+    });
+    
+    $('#inputemoji').click(function() {
+
+    });
+    
+    $('#menu').click(function() {
+        if($(this).is(':visible'))
+            $('#menu-c').show();
+        else
+            $('#menu-c').hide();
+    });
+});

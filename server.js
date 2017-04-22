@@ -2,6 +2,8 @@ var express = require('express');
 var app     = express();
 var server  = require('http').createServer(app);
 var io      = require('socket.io')(server);
+var emoji   = require('node-emoji');
+
 var port    = 1337;
 var Time = function() {
     var newDate = new Date();
@@ -30,6 +32,10 @@ io.on('connection', function(socket) {
     socket.on('typing', function (data) {
       console.log(data);
       socket.broadcast.emit('typing', data);
+    });
+    
+    socket.on('imggiphy', function(data) {
+        console.log('img gipfy : ' +data);
     });
     
     socket.on('message', function(message) {

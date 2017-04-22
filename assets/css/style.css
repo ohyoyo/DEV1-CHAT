@@ -124,6 +124,7 @@ i:last-child {
 
 /* section messenger */
 section#messenger {
+    position: relative;
     width: 100%;
     display: inline-flex;
     flex-direction: row;
@@ -136,6 +137,7 @@ section#messenger header#nav {
     flex-direction: column;
     border-right: 1px solid #95989A;
 }
+
 section#messenger header nav.header {
     display: inline-flex;
     flex-direction: row;
@@ -201,7 +203,6 @@ section#messenger header nav.profil .profil {
 }
 
 section#messenger header nav.profil .profil img.picture {
-    background-image: url(../img/tete/IMG_5194.jpg);
     width: 65px;
     height: 65px;
     background-size: 65px 65px;
@@ -271,8 +272,8 @@ main header#logo #logo {
 }
 
 main header#logo #header_logo {
-    width: 118.08px;
-    height: 45px;
+    width: 108.08px;
+    height: 35px;
 }
 
 main article#chat {
@@ -427,11 +428,51 @@ li .bubble .message {
     text-align: left;
     width: 100%;
 }
+
 li.other {
     flex-direction: column;
     justify-content: flex-start;
 }
+
 li.me {
     flex-direction: column;
     justify-content: flex-end;
+}
+
+.container-box {
+    position: absolute;
+    width: 400px;
+    height: 190px;
+    max-width: 400px;
+    border: 1px solid #95989A;
+    right: 50px;
+    bottom: 39px;
+}
+
+.container-box input {
+    border: none;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    display: inline-flex;
+    flex-direction: row;
+    padding-left: 50px;
+    width: 100%;
+    height: 40px;
+}
+
+.container-row {
+    border-top: 1px solid #95989A;
+    width: 100%;
+    overflow: scroll;
+    display: inline-flex;
+    flex-direction: row;
+}
+
+.container-row img {
+    height: 150px;
+}
+
+.gif-giphy {
+    cursor:pointer;
 }

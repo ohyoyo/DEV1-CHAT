@@ -23,12 +23,22 @@ $(document).ready(function() {
     });
 
     socket.on('user_connect', function(user_tab) {
-        $('#allprofil').remove();
-        $('#profil').append('<div id="allprofil"></div>');
         for (var i=0; i < user_tab.length; i++) {
             user_tab[i];
-            $('#allprofil').append('<div class="profil"><img class="picture" src="' + user_tab[i].picture + '"><div class="user"><div class="username"><div class="name">' + user_tab[i].name + '</div><div class="pseudo">@ohyoyo</div></div><div class="connect"></div></div></div>');
-        } 
+            var userConnect = [
+                '<div class="profil">'+
+                    '<img class="picture" src="' + user_tab[i].picture + '">'+
+                    '<div class="user">'+
+                        '<div class="username">'+
+                            '<div class="name">' + user_tab[i].name + '</div>'+
+                            '<div class="pseudo">' + user_tab[i].id + '</div>'+
+                        '</div>'+
+                        '<div class="connect"> </div>'+
+                    '</div>'+
+                '</div>'
+            ].join();
+            $('#profil').append(userConnect);
+        }
     });
     
     var timeout;
@@ -70,7 +80,7 @@ $(document).ready(function() {
     }
 
     document.addEventListener('keydown', function(e) {
-        if(e.keyCode == 13)
+        if(e.keyCode == 13 && $('#message').focus())
             sendmessage();
     });
     
@@ -87,10 +97,6 @@ $(document).ready(function() {
             '<li class="other">'+
                 '<div class="name">Other</div>'+
                 '<div class="bubble '+bubbleColor+'">'+
-                    '<div class="picture"></div>'+
-                    '<div class="message">'+data.content+'</div>'+
-                '<div class="name">'+data.content.user+'</div>'+
-                '<div class="bulle blue">'+
                     '<img class="picture" src="'+data.content.picture+'">'+
                     '<div class="message">'+data.content.message+'</div>'+
                     '<div class="time">'+sdate.getHours()+'h'+sdate.getMinutes()+'</div>'+
@@ -108,9 +114,6 @@ $(document).ready(function() {
             '<li class="me">'+
                 '<div class="name">Moi</div>'+
                 '<div class="bubble grey">'+
-                    '<div class="picture"></div>'+
-                    '<div class="message">'+data.content+'</div>'+
-                '<div class="bulle grey">'+
                     '<img class="picture" src="'+data.content.picture+'">'+
                     '<div class="message">'+data.content.message+'</div>'+
                     '<div class="time">'+sdate.getHours()+'h'+sdate.getMinutes()+'</div>'+
@@ -119,5 +122,47 @@ $(document).ready(function() {
         ].join();
         
         $('ul').append(slimessage);
+    });
+    
+    $("#inputemoji").hover(function() {
+        $('#gifbox').show();
+    }, function() {
+        $('#gifbox').hide();
+    });
+
+    $("#gifbox").hover(function() {
+        $('#gifbox').show();
+    }, function() {
+        $('#gifbox').hide();
+    });
+    
+/* GIPHY API CONNECT */
+    var getGiphy = function(id, callback) {
+        var idGiphy = function(id) {
+            var key = 'dc6zaTOxFJmzC';
+            if(id == 'trending')
+                return 'http://api.giphy.com/v1/gifs/trending?api_key='+key;
+        }
+
+        $.get(idGiphy(id), function(jsonP) {
+            $.ajax({
+                url: idGiphy(id),
+                type: 'GET',
+                success: function(data) {
+                    console.log(data);
+                    callback(data);
+                },
+                error: function(err) {
+                    console.log(err.code + err.message);
+                }
+            });
+        });
+    }
+
+    getGiphy('trending', function(data) {
+        for(var e = 0; e < data.data.length; e++) {
+            $('#giphy').append('<img class="gif-giphy" src="'+data.data[e].images.downsized.url+'" data-id="'+data.data[e].id+'">');
+            console.log('<img class="gif-giphy" src="'+data.data[e].images.downsized.url+'" data-id="'+data.data[e].id+'">');
+        }
     });
 });
