@@ -7,7 +7,7 @@ var io      = require('socket.io')(server);
 
 /* variable global */
 
-var port    = 8080,
+var port    = 1337,
     Time = function() {
         var newDate = new Date();
         return newDate.getTime();
