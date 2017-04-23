@@ -144,7 +144,7 @@ $(document).ready(function() {
         console.log(data);
         var sdate = new Date(data.time);
         console.log(sdate);
-        var message_check = encodeURI(data.content.message).replace(/3C/g, '< ').replace(/3E/g, ' >'),
+        var message_check = encodeURIComponent(data.content.message).replace(/3C/g, '< ').replace(/3E/g, ' >'),
             limessage = [
             '<li class="other">'+
                 '<div class="name">'+data.content.user+'</div>'+
