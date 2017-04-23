@@ -360,18 +360,15 @@ article#mess {
     height: 100%;
     display: flex;
     flex-direction: column;
-    padding: 50px 50px 0px 50px;
-}
-
-article#mess ul {
-    overflow-y: scroll;
+    justify-content: flex-end;
+    padding: 10px 50px 50px 50px;
 }
 
 ul#listmessage {
     overflow-y: scroll;
 }
 ul#listmessage li {
-    width: 540px;
+    width: 640px;
     margin: 20px;
 }
 ul#listmessage li .name {
@@ -469,11 +466,10 @@ ul#listmessage li.me {
 }
 
 #tiping {
-    position: absolute;
     left: 30;
     bottom: 0;
     width: 400px;
-    height: 132px;
+    height: auto;
 }
 
 .tiping {
