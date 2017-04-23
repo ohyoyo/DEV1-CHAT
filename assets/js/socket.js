@@ -28,7 +28,7 @@ function eraseCookie(name) {
     setCookie(name, '', -1);
 }
 /* END OF LIBRARY */
-socket = io('https://dev1-comet-jauniss.c9users.io/:8080');
+socket = io();
 /* FUNCTION AFTER CHARGING DOM */
 $(document).ready(function() {
     /* variable générale de la function */
