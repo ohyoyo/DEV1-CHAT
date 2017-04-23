@@ -144,12 +144,13 @@ $(document).ready(function() {
         console.log(data);
         var sdate = new Date(data.time);
         console.log(sdate);
-        var limessage = [
+        var message_check = encodeURI(data.content.message).replace(/3C/g, '< ').replace(/3E/g, ' >'),
+            limessage = [
             '<li class="other">'+
                 '<div class="name">'+data.content.user+'</div>'+
                 '<div class="bubble '+bubbleColor+'">'+
                     '<img class="picture" src="'+data.content.picture+'">'+
-                    '<div class="message">'+data.content.message+'</div>'+
+                    '<div class="message">'+message_check+'</div>'+
                     '<div class="time">'+sdate.getHours()+'h'+sdate.getMinutes()+'</div>'+
                 '</div>'+
             '</li>'
