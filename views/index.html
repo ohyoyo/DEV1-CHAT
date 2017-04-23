@@ -22,10 +22,8 @@
         $(document).ready(function() {
             var FullBodyHeight = function() {
                 $('body').css('height', window.innerHeight);
-                $('body').css('max-height', window.innerHeight);
                 $('section#welcome').css('height', window.innerHeight);
                 $('section#messenger').css('height', window.innerHeight);
-                $('.loadPage').css('height', window.innerHeight);
             }
             setInterval(FullBodyHeight, 0);
         });
@@ -36,23 +34,16 @@
         <img id="logo" src="src/img/COMET_LOGO_WHITE-02.svg" alt="Logo Comet" class="pulse animated" >
         <div class="container-box">
             <div class="container">
-                <h2>Connecte-toi</h2>
-                <input type="text" id="pseudo" placeholder="Pseydonyme" maxlength="30">
-                <input type="password" id="password" placeholder="Mot de passe à 4 chiffres" maxlength="4">
-                <button id="buttonConnect">Se connecter</button>
-
-    
                 <fb:login-button id="login-button-facebook" scope="public_profile,email" onlogin="checkLoginState();" data-auto-logout-link="true"></fb:login-button>
-                <div id="status"></div>
-                <div class="button-fb-connect">
-                    <i class="span-fb-connect"> </i> <i> </i>
-                    <div class="bt-fb-connect">Ce connecter</div>
-                </div>
-
-                <div id="status"></div>
+                
+                ou
+                
+                <input type="text" id="pseudoanonyme">
+                <button id="connectAnonyme">Ce connecter</button>
             </div>
         </div>
     </section>
+    
     <section id="messenger">
         <header id="nav">
             <nav class="header">
@@ -91,7 +82,6 @@
                 <ul id="listmessage"></ul>
                 <ul id="tiping"></ul>
                 <div id="gifbox" class="container-box" style="display:none;">
-                    <input type="text" name="search" placeholder="Recherche un gif..">
                     <div class="container-row" id="giphy">
                     </div>
                 </div>

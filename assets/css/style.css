@@ -161,7 +161,6 @@ section#messenger header nav.header #closeHeader {
     background-size: 30px 30px;
     width: 30px;
     height: 30px;
-    margin: 0px 20px;
     cursor: pointer;
 }
 
@@ -192,6 +191,7 @@ section#messenger header nav.profil .profil .user {
     height: 100%;
     background-color: white;
     justify-content: space-between;
+    align-items: center;
 }
 
 section#messenger header nav.profil .profil .user .username {
@@ -409,13 +409,17 @@ ul#listmessage li .bubble .picture {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    margin-right: 10px;
+    margin-right: 15px;
 }
 
 ul#listmessage li .bubble .message {
     text-align: left;
     width: 100%;
     display: block;
+}
+
+ul#listmessage li .bubble .time {
+    margin-left: 15px;
 }
 
 ul#listmessage li.other {
@@ -433,18 +437,8 @@ ul#listmessage li.me {
     right: 50px;
     bottom: 0;
     width: 400px;
-    height: 180px;
+    height: 150px;
     display: inline-block;
-}
-
-.container-box input {
-    margin: 0;
-    padding: 0;
-    outline: none;
-    padding-left: 50px;
-    width: 100%;
-    height: 30px;
-    border: 1px solid #95989A;
 }
 
 .container-row {
