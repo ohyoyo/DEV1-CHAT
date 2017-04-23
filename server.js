@@ -39,20 +39,22 @@ io.on('connection', function(socket) {
     });
 
     socket.on('imggiphy', function(data) {
-        console.log('img gipfy : ' +data);
-        socket.broadcast.emit('readmessage', {
+        console.log('img gipfy : ' + data.gif_id );
+        socket.broadcast.emit('gif_other', {
             user            : data.user,
             picture         : data.picture,
-            message         : data.gif_id,
+            gif             : data.gif_id,
             type            : 'gif',
             time            : Time(),
             bubble_color    : data.bubble_color
         });
-        
-        socket.emit('mymessage', {
-            message : data.gif_id,
-            type    : 'gif',
-            time    : Time(),
+        socket.emit('gif_me', {
+            user            : data.user,
+            picture         : data.picture,
+            gif             : data.gif_id,
+            type            : 'gif',
+            time            : Time(),
+            bubble_color    : data.bubble_color
         });
     });
     

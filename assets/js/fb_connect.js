@@ -1,3 +1,5 @@
+var socket = io('http://localhost:1337');
+
 function statusChangeCallback(response) {
     //console.log(response);
     if (response.status === 'connected') {

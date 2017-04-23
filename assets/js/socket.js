@@ -1,5 +1,3 @@
-$(document).ready(function() {
-    /* FUNCTION COOKIE */
     function setCookie(name,value,days) {
     if (days) {
         var date = new Date();
@@ -27,6 +25,10 @@ $(document).ready(function() {
     function eraseCookie(name) {
         setCookie(name,"",-1);
     }
+
+$(document).ready(function() {
+    /* FUNCTION COOKIE */
+
     
     /* END FUNCTION COOKIE */
     
@@ -58,11 +60,63 @@ $(document).ready(function() {
     $('#giphy').on('click', 'img', function() {
         socket.emit('imggiphy', {
             gif_id          : $(this).data('id'),
-            message         : $('#message').val(),
             user            : user_name,
             picture         : user_picture,
             bubble_color    : bubbleColor
         });
+    });
+    
+    socket.on('gif_other', function(obj) {
+        console.log(obj.gif);
+        var sdate = new Date(obj.time);
+        var url = getGiphy('id', obj.gif, function(data) {
+                var limessage = [
+                    '<li class="other">'+
+                        '<div class="name">'+obj.user+'</div>'+
+                        '<div class="bubble '+obj.bubble_color+'">'+
+                            '<img class="picture" src="'+obj.picture+'">'+
+                            '<div class="message"><img src="'+data.data.images.downsized.url+'"></div>'+
+                            '<div class="time">'+sdate.getHours()+'h'+sdate.getMinutes()+'</div>'+
+                        '</div>'+
+                    '</li>'
+                ].join();
+                $('ul#listmessage').append(limessage);
+        });
+        var limessage = [
+            '<li class="other">'+
+                '<div class="name">'+data.user+'</div>'+
+                '<div class="bubble '+data.bubble_color+'">'+
+                    '<img class="picture" src="'+data.picture+'">'+
+                    '<div class="message"><img src="'+url+'"></div>'+
+                    '<div class="time">'+sdate.getHours()+'h'+sdate.getMinutes()+'</div>'+
+                '</div>'+
+            '</li>'
+        ].join();
+        
+        $('ul#listmessage').append(limessage);
+    });
+    
+    socket.on('gif_me', function(data) {
+        //console.log(data.gif);
+        var url = undefined;
+        var sdate = new Date(data.time);
+        var url = getGiphy('id', data.gif, function(data) {
+            var slimessage = [
+            '<li class="me">'+
+                '<div class="name">Moi</div>'+
+                '<div class="bubble grey">'+
+                    '<img class="picture" src="'+user_picture+'">'+
+                    '<div class="message"><img src="'+data.data.images.downsized.url+'"></div>'+
+                    '<div class="time">'+sdate.getHours()+'h'+sdate.getMinutes()+'</div>'+
+                '</div>'+
+            '</li>'
+        ].join();
+        
+        $('ul#listmessage').append(slimessage);
+        });
+        //console.log(url)
+        
+       
     });
     
     $('#inputemoji').click(function() {
