@@ -144,8 +144,9 @@ $(document).ready(function() {
         console.log(data);
         var sdate = new Date(data.time);
         console.log(sdate);
-        var message_check = encodeURIComponent(data.content.message).replace(/3C/g, '< ').replace(/3E/g, ' >'),
-            limessage = [
+        var message_check = encodeURIComponent(data.content.message).replace(/3C/g, '< ').replace(/3E/g, ' >');
+        message_check = decodeURIComponent(message_check);
+        var limessage = [
             '<li class="other">'+
                 '<div class="name">'+data.content.user+'</div>'+
                 '<div class="bubble '+bubbleColor+'">'+
@@ -162,12 +163,14 @@ $(document).ready(function() {
     socket.on('mymessage', function(data) {
         var sdate = new Date(data.time);
         console.log(sdate);
+        var message_check = encodeURIComponent(data.content.message).replace(/%3C/g, '< ').replace(/%3E/g, ' >');
+        var message_check = decodeURIComponent(message_check);
         var slimessage = [
             '<li class="me">'+
             '<div class="name">Moi</div>'+
             '<div class="bubble grey">'+
             '<img class="picture" src="'+data.content.picture+'">'+
-            '<div class="message">'+data.content.message+'</div>'+
+            '<div class="message">'+message_check+'</div>'+
             '<div class="time">'+sdate.getHours()+'h'+sdate.getMinutes()+'</div>'+
             '</div>'+
             '</li>'
