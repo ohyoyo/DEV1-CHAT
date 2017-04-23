@@ -1,5 +1,8 @@
-var Time = function() { var newDate = new Date(); return newDate.getTime(); }
-var socket = io();
+var Time = function() {
+    var newDate = new Date();
+    return newDate.getTime();
+},
+    socket = io();
 
 function setCookie(name,value,days) {
     if (days) {

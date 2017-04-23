@@ -15,8 +15,7 @@
     <script src="src/js/jquery-1.12.4.js"></script>
     <script src="src/js/jquery-ui.js"></script>
     
-    <script src="src/js/document.js"></script>
-    <script src="src/js/script.js"></script>
+    <script src="src/js/fb_connect.js"></script>
     <script src="src/js/socket.js"></script>
 
     <script>
@@ -42,6 +41,7 @@
 </head>
 <body>
     <section id="welcome">
+        <fb:login-button id="login-button-facebook" scope="public_profile,email" onlogin="checkLoginState();" data-auto-logout-link="true"></fb:login-button>
         <img id="logo" src="src/img/COMET_LOGO_WHITE-02.svg" alt="Logo Comet" class="pulse animated" >
         <div class="container-box">
             <div class="container">
@@ -50,7 +50,6 @@
                 <input type="password" id="password" placeholder="Mot de passe à 4 chiffres" maxlength="4">
                 <button id="buttonConnect">Se connecter</button>
 
-                <fb:login-button id="login-button-facebook" scope="public_profile,email" onlogin="checkLoginState();" data-auto-logout-link="true"></fb:login-button>
                 <div id="status"></div>
                 <div class="button-fb-connect">
                     <i class="span-fb-connect"> </i> <i> </i>
@@ -75,6 +74,7 @@
             
             </nav>
         </header>
+
         <main>
             <header id="logo">
                 <div id="logo">
@@ -84,10 +84,16 @@
                 </div>
                 <a href="" class="spritegg infos" id="infos"></a>
             </header>
-            <article id="mess">
-                <ul>
+
+            <article id="mess" style="position:relative;">
+                <ul id="listmessage">
+                    
+                </ul>
+                <ul id="tiping">
+                
                 </ul>
             </article>
+
             <article id="chat">
                 <input id="message" autofocus type="text" name="message" placeholder="Écrire un message..">
                 <div id="input">

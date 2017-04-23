@@ -1,17 +1,20 @@
+/**/
 var express = require('express');
 var app     = express();
 var server  = require('http').createServer(app);
 var io      = require('socket.io')(server);
 var emoji   = require('node-emoji');
 
-var port    = 1337;
-var Time = function() {
-    var newDate = new Date();
-    return newDate.getTime();
-}
-var user_tab = [],
+/* variable public */
+var port    = 1337,
+    Time = function() {
+        var newDate = new Date();
+        return newDate.getTime();
+    },
+    user_tab = [],
     i = 0;
 
+/* links */
 app.use('/src/css/', express.static(__dirname + '/assets/css'));
 app.use('/src/js/', express.static(__dirname + '/assets/js'));
 app.use('/src/img/', express.static(__dirname + '/assets/img'));
@@ -30,26 +33,33 @@ io.on('connection', function(socket) {
     });
     
     socket.on('typing', function (data) {
-      console.log(data);
-      socket.broadcast.emit('typing', data);
+        console.log(data);
+        socket.broadcast.emit('typing', {
+            user_name   : data.user_name,
+            bubble_color: data.bubble_color
+      });
     });
     
     socket.on('imggiphy', function(data) {
         console.log('img gipfy : ' +data);
     });
     
-    socket.on('message', function(message) {
+    socket.on('message', function(data) {
         socket.broadcast.emit('readmessage', {
-            content : message,
-            time : Time(),
+            user            : data.user,
+            picture         : data.picture,
+            message         : data.message,
+            time            : Time(),
+            bubble_color    : data.bubble_color
         });
         
         socket.emit('mymessage', {
-            content : message,
-            time : Time(),
+            message : data.message,
+            time    : Time(),
         });
         
     });
+
     socket.on('disconnect', function() {
         console.log(socket.id + ' disconnect');
     });

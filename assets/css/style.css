@@ -66,30 +66,6 @@ section#welcome .container-box .container button {
     font-size: 16px;
 }
 
-@-webkit-keyframes rotateLoadPage {
-    0% {
-        -webkit-transform: rotate(0deg);
-    }
-    100% {
-        -webkit-transform: rotate(360deg);
-    }
-}
-
-.loadPage {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    -webkit-animation: rotateLoadPage 1s infinite;
-}
-
-.loadPage .loadPageRocket {
-    background-image: url(../img/g-03.svg);
-    background-repeat: no-repeat;
-    width: 200px;
-    height: 200px;
-}
-
 .button-fb-connect {
     width: 250px;
     height: 40px;
@@ -243,6 +219,14 @@ section#messenger header nav.profil .profil .user .connect {
     content: ' ';
 }
 
+section#messenger header nav.profil .profil .user .disconnect {
+    background-color: grey;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    content: ' ';
+}
+
 section#messenger header#logo {
     height: 50px;
     border-bottom: 1px solid #95989A;
@@ -379,6 +363,10 @@ article#mess {
     padding: 50px;
 }
 
+article#mess ul {
+    overflow-y: scroll;
+}
+
 li {
     width: 540px;
     margin: 20px;
@@ -475,4 +463,45 @@ li.me {
 
 .gif-giphy {
     cursor:pointer;
+    justify-content: flex-start;
+}
+
+#tiping {
+    position: absolute;
+    left: 50px;
+    bottom: 0;
+    width: 400px;
+    height: 132px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow: scroll;
+}
+
+.tiping {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #95989A;
+    font-size: 14px;
+}
+
+.tiping .bubble {
+    width: 7px;
+    height: 7px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.tiping .bubble.blue {
+    background-image: url(../img/picto/tiping/ic_mode_comment_black_24px_blue.svg);
+}
+
+.tiping .bubble.red {
+    background-image: url(../img/picto/tiping/ic_mode_comment_black_24px_red.svg);
+}
+
+.tiping .bubble.green {
+    background-image: url(../img/picto/tiping/ic_mode_comment_black_24px_green.svg);
 }
