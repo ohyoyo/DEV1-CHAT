@@ -35,6 +35,7 @@
                 $('section#messenger').css('height', window.innerHeight);
                 $('.loadPage').css('height', window.innerHeight);
             }
+            
             setInterval(FullBodyHeight, 0);
         });
     </script>
@@ -92,6 +93,11 @@
                 <ul id="tiping">
                 
                 </ul>
+                <div id="gifbox" class="container-box" style="display:none;">
+                    <input type="text" name="search" placeholder="Recherche un gif..">
+                    <div class="container-row" id="giphy">
+                    </div>
+                </div>
             </article>
 
             <article id="chat">
@@ -99,11 +105,6 @@
                 <div id="input">
                     <div id="submit" class="spritegg give"></div>
                     <div id="inputemoji" class="spritegg gif"></div>
-                    <div id="gifbox" class="container-box" style="display:none;">
-                        <input type="text" name="search" placeholder="Recherche un gif..">
-                        <div class="container-row" id="giphy">
-                        </div>
-                    </div>
                     <div class="spritegg emoji"></div>
                     <input type="file" id="inputpicture" style="display:none;">
                     <label class="spritegg picture" for="inputpicture"></label>

@@ -360,24 +360,27 @@ article#mess {
     height: 100%;
     display: flex;
     flex-direction: column;
-    padding: 50px;
+    padding: 50px 50px 0px 50px;
 }
 
 article#mess ul {
     overflow-y: scroll;
 }
 
-li {
+ul#listmessage {
+    overflow-y: scroll;
+}
+ul#listmessage li {
     width: 540px;
     margin: 20px;
 }
-li .name {
+ul#listmessage li .name {
     font-size: 15px;
     margin-left: 15px;
     margin-bottom: 5px;
 }
 
-li .bubble {
+ul#listmessage li .bubble {
     width: 100%;
     border-radius: 10px;
     display: flex;
@@ -388,23 +391,23 @@ li .bubble {
     color: white;
 }
 
-li .bubble.blue {
+ul#listmessage li .bubble.blue {
     background-color: #2590F5;
 }
 
-li .bubble.red {
+ul#listmessage li .bubble.red {
     background-color: #DB5149;
 }
 
-li .bubble.green {
+ul#listmessage li .bubble.green {
     background-color: #24A061;
 }
 
-li .bubble.grey {
+ul#listmessage li .bubble.grey {
     background-color: #E5E5EA;
 }
 
-li .bubble .picture {
+ul#listmessage li .bubble .picture {
     background-color: red;
     width: 30px;
     height: 30px;
@@ -412,45 +415,44 @@ li .bubble .picture {
     margin-right: 10px;
 }
 
-li .bubble .message {
+ul#listmessage li .bubble .message {
     text-align: left;
     width: 100%;
+    display: block;
 }
 
-li.other {
+ul#listmessage li.other {
     flex-direction: column;
     justify-content: flex-start;
 }
 
-li.me {
+ul#listmessage li.me {
     flex-direction: column;
     justify-content: flex-end;
 }
 
 .container-box {
     position: absolute;
-    width: 400px;
-    height: 190px;
-    max-width: 400px;
-    border: 1px solid #95989A;
     right: 50px;
-    bottom: 39px;
+    bottom: 0;
+    width: 400px;
+    height: 180px;
+    display: inline-block;
 }
 
 .container-box input {
-    border: none;
     margin: 0;
     padding: 0;
     outline: none;
-    display: inline-flex;
-    flex-direction: row;
     padding-left: 50px;
     width: 100%;
-    height: 40px;
+    height: 30px;
+    border: 1px solid #95989A;
 }
 
 .container-row {
-    border-top: 1px solid #95989A;
+    border-right: 1px solid #95989A;
+    border-left: 1px solid #95989A;
     width: 100%;
     overflow: scroll;
     display: inline-flex;
@@ -462,24 +464,19 @@ li.me {
 }
 
 .gif-giphy {
-    cursor:pointer;
+    cursor: pointer;
     justify-content: flex-start;
 }
 
 #tiping {
     position: absolute;
-    left: 50px;
+    left: 30;
     bottom: 0;
     width: 400px;
     height: 132px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    overflow: scroll;
 }
 
 .tiping {
-    position: relative;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -491,7 +488,9 @@ li.me {
     width: 7px;
     height: 7px;
     background-position: center;
+    background-size: 10%;
     background-repeat: no-repeat;
+    margin-right: 15px;
 }
 
 .tiping .bubble.blue {
@@ -504,4 +503,12 @@ li.me {
 
 .tiping .bubble.green {
     background-image: url(../img/picto/tiping/ic_mode_comment_black_24px_green.svg);
+}
+
+
+@media screen and (max-width: 822px){
+    ul#listmessage li {
+        width: 80%;
+        margin-right: 50px;
+    }
 }

@@ -55,16 +55,63 @@ $(document).ready(function() {
     },
         socket = io();
 
-    $('.gif-giphy').click(function() {
-        alert('ok');
-        alert($('.gif-giphy').data('id'));
-        socket.emit('imggiphy', $('.gif-giphy').data('id'));
+    $('#giphy').on('click', 'img', function() {
+        socket.emit('imggiphy', {
+            gif_id          : $(this).data('id'),
+            message         : $('#message').val(),
+            user            : user_name,
+            picture         : user_picture,
+            bubble_color    : bubbleColor
+        });
     });
     
     $('#inputemoji').click(function() {
 
     });
     
+    $("#inputemoji").hover(function() {
+        $('#gifbox').show();
+    }, function() {
+        $('#gifbox').hide();
+    });
+
+    $("#gifbox").hover(function() {
+        $('#gifbox').show();
+    }, function() {
+        $('#gifbox').hide();
+    });
+    
+    /* GIPHY API CONNECT */
+    var getGiphy = function(search, id, callback) {
+        var idGiphy = function(search) {
+            var key = 'dc6zaTOxFJmzC';
+            if(search == 'trending')
+                return 'http://api.giphy.com/v1/gifs/trending?api_key='+key;
+            else if(search == 'id')
+                return 'http://api.giphy.com/v1/gifs/'+id+'?api_key='+key;
+        }
+
+        $.get(idGiphy(search), '', function(jsonP) {
+            $.ajax({
+                url: idGiphy(search),
+                type: 'GET',
+                success: function(data) {
+                    console.log(data);
+                    callback(data);
+                },
+                error: function(err) {
+                    console.log(err.code + err.message);
+                }
+            });
+        });
+    }
+
+    getGiphy('trending', '', function(data) {
+        for(var e = 0; e < data.data.length; e++) {
+            $('#giphy').append('<img class="gif-giphy" src="'+data.data[e].images.downsized.url+'" data-id="'+data.data[e].id+'">');
+        }
+    });
+
     $('#menu').click(function() {
         $('#menu-c').slideToggle('slow', function() {
             if($(this).is(':visible')){}
@@ -79,7 +126,6 @@ $(document).ready(function() {
     });
     
     socket.on('disconnect', function() {
-        console.log('disconnect');
         var user_obj = {
             user    : user_name,
             picture : user_picture
@@ -121,7 +167,6 @@ $(document).ready(function() {
     }
 
     $('#message').keyup(function() {
-        console.log('happening');
         typing = true;
         socket.emit('typing', {
             user_name   : user_name,
@@ -152,7 +197,6 @@ $(document).ready(function() {
     });
     
     function sendmessage() {
-        console.log($('#message').val());
 
         if($('#message').val() <= 0)
             return console.log('please write something');
@@ -175,15 +219,27 @@ $(document).ready(function() {
     $('#submit').click(function() {
         sendmessage();
     });
-
+    
+    var so_message = function(data) {
+        if(data.type == 'message')
+            return data.message;
+        else if(data.type == 'gif'){
+            getGiphy('id', data.message, function(data) {
+                return data.data.images.downsized.url;
+            });
+        }
+    }
+        
     socket.on('readmessage', function(data) {
+        
         var sdate = new Date(data.time);
+        
         var limessage = [
             '<li class="other">'+
                 '<div class="name">'+data.user+'</div>'+
                 '<div class="bubble '+data.bubble_color+'">'+
                     '<img class="picture" src="'+data.picture+'">'+
-                    '<div class="message">'+data.message+'</div>'+
+                    '<div class="message">'+so_message(data)+'</div>'+
                     '<div class="time">'+sdate.getHours()+'h'+sdate.getMinutes()+'</div>'+
                 '</div>'+
             '</li>'
@@ -193,14 +249,16 @@ $(document).ready(function() {
     });
 
     socket.on('mymessage', function(data) {
+
+        
+        so_message(data);
         var sdate = new Date(data.time);
-        console.log(sdate);
         var slimessage = [
             '<li class="me">'+
                 '<div class="name">Moi</div>'+
                 '<div class="bubble grey">'+
                     '<img class="picture" src="'+user_picture+'">'+
-                    '<div class="message">'+data.message+'</div>'+
+                    '<div class="message">'+so_message(data)+'</div>'+
                     '<div class="time">'+sdate.getHours()+'h'+sdate.getMinutes()+'</div>'+
                 '</div>'+
             '</li>'
@@ -209,44 +267,13 @@ $(document).ready(function() {
         $('ul#listmessage').append(slimessage);
     });
     
-    $("#inputemoji").hover(function() {
-        $('#gifbox').show();
-    }, function() {
-        $('#gifbox').hide();
-    });
-
-    $("#gifbox").hover(function() {
-        $('#gifbox').show();
-    }, function() {
-        $('#gifbox').hide();
-    });
-    
-    /* GIPHY API CONNECT */
-    var getGiphy = function(id, callback) {
-        var idGiphy = function(id) {
-            var key = 'dc6zaTOxFJmzC';
-            if(id == 'trending')
-                return 'http://api.giphy.com/v1/gifs/trending?api_key='+key;
-        }
-
-        $.get(idGiphy(id), function(jsonP) {
-            $.ajax({
-                url: idGiphy(id),
-                type: 'GET',
-                success: function(data) {
-                    console.log(data);
-                    callback(data);
-                },
-                error: function(err) {
-                    console.log(err.code + err.message);
-                }
-            });
-        });
-    }
-
-    getGiphy('trending', function(data) {
-        for(var e = 0; e < data.data.length; e++) {
-            $('#giphy').append('<img class="gif-giphy" src="'+data.data[e].images.downsized.url+'" data-id="'+data.data[e].id+'">');
+    $('#closeHeader').click(function() {
+        if($('section#messenger header#nav').css('width') == '140px'){
+            $(this).css('background-image', 'url("src/img/picto/ic_keyboard_return_black_24px.svg")');
+            $('section#messenger header#nav').css('width', '25%');
+        } else {
+            $(this).css('background-image', 'url("src/img/picto/ic_keyboard_tab_black_24px.svg")');
+            $('section#messenger header#nav').css('width', '140px');
         }
     });
 });

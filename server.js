@@ -26,22 +26,34 @@ io.on('connection', function(socket) {
     
     
     socket.on('fb_user', function(obj) {
-        console.log('toto');
         user_tab[i] = obj;
         ++i;
         io.emit('user_connect', user_tab);
     });
     
     socket.on('typing', function (data) {
-        console.log(data);
         socket.broadcast.emit('typing', {
             user_name   : data.user_name,
             bubble_color: data.bubble_color
       });
     });
-    
+
     socket.on('imggiphy', function(data) {
         console.log('img gipfy : ' +data);
+        socket.broadcast.emit('readmessage', {
+            user            : data.user,
+            picture         : data.picture,
+            message         : data.gif_id,
+            type            : 'gif',
+            time            : Time(),
+            bubble_color    : data.bubble_color
+        });
+        
+        socket.emit('mymessage', {
+            message : data.gif_id,
+            type    : 'gif',
+            time    : Time(),
+        });
     });
     
     socket.on('message', function(data) {
@@ -49,12 +61,14 @@ io.on('connection', function(socket) {
             user            : data.user,
             picture         : data.picture,
             message         : data.message,
+            type            : 'message',
             time            : Time(),
             bubble_color    : data.bubble_color
         });
         
         socket.emit('mymessage', {
             message : data.message,
+            type    : 'message',
             time    : Time(),
         });
         
