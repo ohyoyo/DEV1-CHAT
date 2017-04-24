@@ -16,8 +16,15 @@ function checkLoginState() {
 }
 
 window.fbAsyncInit = function() {
+    var appId;
+    
+    if(location.hostname == 'dev1-comet-jauniss.c9users.io')
+        appId = '1361297530593584';
+    else if(location.hostname == 'localhost')
+        appId = '291446551295500';
+    
     FB.init({
-        appId      : '1361297530593584',
+        appId      : appId,
         cookie     : true,
         xfbml      : true,
         version    : 'v2.8'
