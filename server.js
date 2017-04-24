@@ -7,7 +7,7 @@ var io      = require('socket.io')(server);
 
 /* variable global */
 
-var port    = 1337,
+var port    = 8080,
     Time = function() {
         var newDate = new Date();
         return newDate.getTime();
@@ -33,25 +33,34 @@ io.on('connection', function(socket) {
     socket.on('fb_user', function(obj) {
         user_tab[i] = obj;
         ++i;
+        console.log('2');
+        console.log(obj.socket_id);
+        console.log('io.emit');
         io.emit('user_connect', user_tab);
+        console.log('socket.emit');
         socket.emit('yourinfo', obj);
     });
     
     socket.on('disconnect', function() {
-        for (var j=0; socket.id != user_tab[j].socket_id; j++);
-        io.emit('user_disconnect', {
-            tab: user_tab,
-            pos: j
-        });
-        var x = 5;
-        var y = setInterval(function() {
-            --x;
-        }, 1000);
-        setTimeout(function() {
-            clearInterval(y);
-            user_tab.splice(j, 1);
-            io.emit('user_connect', user_tab);
-        }, x * 1000);
+        for (var j=0; socket.id != user_tab[j].socket_id; j++){}
+        console.log(j);
+            if (j < user_tab.length) {
+                io.emit('user_disconnect', {
+                    tab: user_tab,
+                    pos: j
+                });
+                var x = 5;
+                var y = setInterval(function() {
+                    --x;
+                }, 1000);
+                setTimeout(function() {
+                    clearInterval(y);
+                    user_tab.splice(j, 1);
+                    io.emit('user_connect', user_tab);
+                    --i;
+                }, x * 1000);
+            }
+        
     });
     
     /* user is typing something */
@@ -92,10 +101,6 @@ io.on('connection', function(socket) {
             time            : Time(),
             bubble_color    : data.bubble_color
         });
-    });
-    
-    socket.on('disconnect', function() {
-        console.log(socket.id + ' disconnect');
     });
 });
 

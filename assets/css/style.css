@@ -164,20 +164,20 @@ section#messenger header nav.header #closeHeader {
     cursor: pointer;
 }
 
-section#messenger header nav.profil {
+section#messenger header nav .profil {
     display: inline-flex;
     flex-direction: column;
     width: 100%;
 }
 
-section#messenger header nav.profil .profil {
+section#messenger header nav .profil .profil {
     display: inline-flex;
     flex-direction: row;
     height: 65px;
     margin: 0px 0px 10px 10px;
 }
 
-section#messenger header nav.profil .profil img.picture {
+section#messenger header nav .profil .profil img.picture {
     width: 65px;
     height: 65px;
     background-size: 65px 65px;
@@ -185,7 +185,7 @@ section#messenger header nav.profil .profil img.picture {
     margin-right: 15px;
 }
 
-section#messenger header nav.profil .profil .user {
+section#messenger header nav .profil .profil .user {
     width: 100%;
     display: flex;
     height: 100%;
@@ -194,7 +194,7 @@ section#messenger header nav.profil .profil .user {
     align-items: center;
 }
 
-section#messenger header nav.profil .profil .user .username {
+section#messenger header nav .profil .profil .user .username {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -202,16 +202,16 @@ section#messenger header nav.profil .profil .user .username {
     
 }
 
-section#messenger header nav.profil .profil .user .username .name {
+section#messenger header nav .profil .profil .user .username .name {
     font-size: 15px;
 }
 
-section#messenger header nav.profil .profil .user .username .pseudo {
+section#messenger header nav .profil .profil .user .username .pseudo {
     color: #656565;
     font-size: 12px;
 }
 
-section#messenger header nav.profil .profil .user .connect {
+section#messenger header nav .profil .profil .user .connect {
     background-color: green;
     width: 15px;
     height: 15px;
@@ -219,7 +219,7 @@ section#messenger header nav.profil .profil .user .connect {
     content: ' ';
 }
 
-section#messenger header nav.profil .profil .user .disconnect {
+section#messenger header nav .profil .profil .user .disconnect {
     background-color: grey;
     width: 15px;
     height: 15px;

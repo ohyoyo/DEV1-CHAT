@@ -28,7 +28,6 @@ function eraseCookie(name) {
     setCookie(name, '', -1);
 }
 /* END OF LIBRARY */
-socket = io();
 /* FUNCTION AFTER CHARGING DOM */
 $(document).ready(function() {
     /* variable générale de la function */
@@ -60,12 +59,18 @@ $(document).ready(function() {
     
     /* affichage des utilisateurs */
     socket.on('yourinfo', function(obj) {
+        console.log('4')
         user = obj;
     });
     
     socket.on('user_connect', function(user_tab) {
+        console.log('3')
+        $('#allprofil').remove();
+        console.log('allprofil remove');
+        $('#profil').append('<div id="allprofil" class="profil"></div>');
+        console.log('allprofil recreate');
         for (var i=0; i < user_tab.length; i++) {
-            user_tab[i];
+            console.log(user_tab[i]);
             var userConnect = [
                 '<div class="profil">'+
                     '<img class="picture" src="' + user_tab[i].picture + '">'+
@@ -78,7 +83,7 @@ $(document).ready(function() {
                     '</div>'+
                 '</div>'
             ].join();
-            $('#profil').append(userConnect);
+            $('#allprofil').append(userConnect);
         }
     });
 //    
@@ -218,9 +223,9 @@ $(document).ready(function() {
         function idGiphy(search) {
             var key = 'dc6zaTOxFJmzC';
             if(search == 'trending')
-                return 'http://api.giphy.com/v1/gifs/trending?api_key='+key;
+                return 'https://api.giphy.com/v1/gifs/trending?api_key='+key;
             else if(search == 'id')
-                return 'http://api.giphy.com/v1/gifs/'+id+'?api_key='+key;
+                return 'https://api.giphy.com/v1/gifs/'+id+'?api_key='+key;
         }
         $.get(idGiphy(search), '', function(jsonP) {
             $.ajax({

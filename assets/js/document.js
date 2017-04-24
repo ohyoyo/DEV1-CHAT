@@ -1,3 +1,4 @@
+socket = io();
 function statusChangeCallback(response) {
     //console.log(response);
     if (response.status === 'connected') {
@@ -16,8 +17,23 @@ function checkLoginState() {
 }
 
 window.fbAsyncInit = function() {
+    console.log('toto');
+    var appId;
+    
+    switch(location.hostname){
+        case 'localhost':
+            appId = '291446551295500';
+            break;
+        case 'dev1-comet-jauniss.c9users.io':
+           appId = '1361297530593584';
+            break;
+        default:
+            break;
+        
+    }
+    console.log(appId); 
     FB.init({
-        appId      : '1361297530593584',
+        appId      : appId,
         cookie     : true,
         xfbml      : true,
         version    : 'v2.8'
@@ -40,6 +56,7 @@ function connectAPI() {
         FB.api("/" + user_obj.fb_id + "/picture", function (rpic) {
             if (rpic && !rpic.error) {
                 user_obj.picture = rpic.data.url;
+                console.log('1');
                 console.log(user_obj);
                 socket.emit('fb_user', user_obj);
             }
