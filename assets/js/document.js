@@ -17,9 +17,7 @@ function checkLoginState() {
 }
 
 window.fbAsyncInit = function() {
-    console.log('toto');
     var appId;
-    
     switch(location.hostname){
         case 'localhost':
             appId = '291446551295500';
@@ -29,16 +27,13 @@ window.fbAsyncInit = function() {
             break;
         default:
             break;
-        
     }
-    console.log(appId); 
     FB.init({
         appId      : appId,
         cookie     : true,
         xfbml      : true,
         version    : 'v2.8'
     });
-
     FB.getLoginStatus(function(response) {
         statusChangeCallback(response);
     });

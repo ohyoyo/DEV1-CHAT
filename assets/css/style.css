@@ -17,87 +17,12 @@ section#welcome #logo {
     width: 25%;
 }
 
-section#welcome .container-box {
-    display: none;
-}
-
-section#welcome .container-box .container {
+section#welcome .container {
     background-color: rgb(255, 255, 255);
-    width: 312px;
-    height: 260px;
+    padding: 15px;
     border-radius: 15px;
     margin-top: 75px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: column;
 }
-
-section#welcome .container-box .container h2 {
-    font-size: 20px;
-    color: rgb(0, 159, 227);
-    width: 170px;
-}
-
-section#welcome .container-box .container input {
-    border: 2px solid rgb(0, 159, 227);
-    border-radius: 5px;
-    width: 250px;
-    height: 30px;
-    outline: none;
-    text-align: center;
-    color: rgb(149, 152, 154);
-    font-size: 16px;
-}
-
-section#welcome .container-box .container input::-webkit-input-placeholder {
-    text-align: center;
-    color: rgb(149, 152, 154);
-    font-size: 16px;
-}
-
-section#welcome .container-box .container button {
-    background-color: rgb(0, 159, 227);
-    color: rgb(255, 255, 255);
-    border-radius: 5px;
-    width: 254px;
-    height: 34px;
-    border: none;
-    font-size: 16px;
-}
-
-.button-fb-connect {
-    width: 250px;
-    height: 40px;
-    background-color: rgb(73, 102, 174);
-    border: 2px solid rgb(73, 102, 174);
-    border-radius: 5px;
-    text-align: center;
-    color: white;
-    display: inline-flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-i.span-fb-connect {
-    width: 40px;
-    height: 40px;
-    background-image: url(../img/fb-.svg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 10.39px 20px;
-}
-
-i:last-child {
-    height: 20px;
-    border: 1px solid white;
-}
-
-.bt-fb-connect {
-    width: 100%;
-    text-align: center;
-}
-
 /* section messenger */
 section#messenger {
     position: relative;
@@ -177,6 +102,10 @@ section#messenger header nav .profil .profil {
     margin: 0px 0px 10px 10px;
 }
 
+section#messenger header nav div#allprofil {
+    width: 100%;
+}
+
 section#messenger header nav .profil .profil img.picture {
     width: 65px;
     height: 65px;
@@ -186,7 +115,7 @@ section#messenger header nav .profil .profil img.picture {
 }
 
 section#messenger header nav .profil .profil .user {
-    width: 100%;
+    width: calc(100% - 90px);
     display: flex;
     height: 100%;
     background-color: white;
